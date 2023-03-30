@@ -1,0 +1,8 @@
+db.unicorns.aggregate([{ $match: { weight: { $lt: 600 } } },
+{
+  $group: {
+    _id: '$gender', total: { $sum: 1 },
+    avgVamp: { $avg: '$vampires' }
+  }
+},
+{ $sort: { avgVamp: -1 } }])
